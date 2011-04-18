@@ -19,14 +19,13 @@
 // THE SOFTWARE.
 
 ///////////////////////////////////////////////////////////////////////////////
-// nodejs implementation of generic algorithms of 'Hello World!'
+// nodejs implementation of genetic algorithms of 'Hello World!'
 ///////////////////////////////////////////////////////////////////////////////
+// target
+var _target_gene = 'Hello, World!'; 
 
-var abs = Math.abs;
-var rand = Math.random;
-var round = Math.round;
-var floor = Math.floor;
-var _target_gene = 'Hello, World!';
+// Mathematical tools
+var abs = Math.abs, rand = Math.random, round = Math.round, floor = Math.floor;
 
 // produce a random interger number
 function randInt(min, max) {
@@ -43,7 +42,6 @@ function updateFitness(gene) {
   }
 
   return fitness;                                   
-
 }
 
 function sortPopulation(buffer) {
@@ -180,7 +178,7 @@ var maxGeneration = 16834;
 var pop = new Population(2048, 0.8, 0.1, 0.3);
 
 for (var i = 0; i < maxGeneration; ++i) {
-  console.log('Generation' + i + ': ' + pop.population[0].gene);
+  console.log('Generation #' + i + ': ' + pop.population[0].gene);
   if (pop.population[0].fitness === 0) {
     break;
   } else if (i < maxGeneration && pop.population[0].fitness !== 0) {
