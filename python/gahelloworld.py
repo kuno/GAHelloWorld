@@ -45,7 +45,7 @@ class Chromosome(object):
     result in a new chromosome instance being created.
     """
 
-    _target_gene = "Hello, world!"
+    _target_gene = 'Hello, world!'
     
     def __init__(self, gene):
         self.gene = gene
@@ -82,8 +82,13 @@ class Chromosome(object):
         on its gene.
         """
         fitness = 0
+       # l = zip(gene, Chromosome._target_gene)
+       # print('how many times?');
         for a, b in zip(gene, Chromosome._target_gene):
+            print('%s is %d' % (a, ord(a)))
+            print('%s is %d' % (b, ord(b)))
             fitness += abs(ord(a) - ord(b))
+            print(fitness)
             
         return fitness
         
@@ -172,11 +177,13 @@ class Population(object):
 
 if __name__ == "__main__":
 	maxGenerations = 16384
-	pop = Population(size=2048, crossover=0.8, elitism=0.1, mutation=0.3)
+	#pop = Population(size=2048, crossover=0.8, elitism=0.1, mutation=0.3)
 
-	for i in range(1, maxGenerations + 1):
-		print("Generation %d: %s" % (i, pop.population[0].gene))
-		if pop.population[0].fitness == 0: break
-		else:pop.evolve()
-	else:
-		print("Maximum generations reached without success.")
+	#for i in range(1, maxGenerations + 1):
+	#	print("Generation %d: %s" % (i, pop.population[0].gene))
+	#	if pop.population[0].fitness == 0: break
+	#	else:pop.evolve()
+	#else:
+	#	print("Maximum generations reached without success.")
+	c = Chromosome('t\\O`E_Jx$n=NF')
+	print(c.fitness)

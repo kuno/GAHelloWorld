@@ -22,7 +22,7 @@
 // nodejs implementation of genetic algorithms of 'Hello World!'
 ///////////////////////////////////////////////////////////////////////////////
 // target
-var _target_gene = 'Hello, World!'; 
+var _target_gene = "Hello, world!"; 
 
 // Mathematical tools
 var abs = Math.abs, rand = Math.random, round = Math.round, floor = Math.floor;
@@ -35,10 +35,12 @@ function randInt(min, max) {
 
 function updateFitness(gene) {
   var fitness = 0;
-  var len = gene.length >= _target_gene.length ? gene.length : _target_gene.length;
+  var buf1 = new Buffer(gene, encoding='ascii');
+  var buf2 = new Buffer(_target_gene, encoding='ascii');
+  var len = (buf1.length == buf2.length) ? buf1.length : null;
 
   for (var i = 0; i < len; ++i) {
-    fitness += abs(parseInt((gene.charCodeAt(i) - _target_gene.charCodeAt(i)), 10));
+    fitness += abs(buf1[i] - buf2[i]);
   }
 
   return fitness;                                   
@@ -172,18 +174,7 @@ Population.prototype.evolve = function() {
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// main program
+// exports
 ///////////////////////////////////////////////////////////////////////////////
-var maxGeneration = 16834;
-var pop = new Population(2048, 0.8, 0.1, 0.3);
-
-for (var i = 0; i < maxGeneration; ++i) {
-  console.log('Generation #' + i + ': ' + pop.population[0].gene);
-  if (pop.population[0].fitness === 0) {
-    break;
-  } else if (i < maxGeneration && pop.population[0].fitness !== 0) {
-    pop.evolve();
-  } else {
-    console.log('Maximum generations reached without success.');
-  }
-}
+exports.Chromosome = Chromosome;
+exports.Population = Population;
