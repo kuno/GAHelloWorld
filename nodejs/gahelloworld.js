@@ -46,22 +46,31 @@ function updateFitness(gene) {
   return fitness;                                   
 }
 
-function sortPopulation(buffer) {
-  if (buffer.length <= 1) {return buffer;}
+function sortPopulation(buffer, msg) {
+  if (buffer.length < 2) {
+    console.log(msg + ' leaf is ' + buffer.length);
+    return buffer;
+  } else {
+   console.log('all is ' + buffer.length);
+  }
   var pivotIndex = floor(buffer.length / 2);
   var pivot = buffer.splice(pivotIndex, 1)[0];
+  console.log('pivot is ' + pivot.fitness);
   var left = [];
   var right = [];
 
-  for (var i = 0; i < buffer.length; i++) {
-    if (buffer[i].fitness < pivot.fitness) {
+  for (var i = 0; i < buffer.length; ++i) {
+    console.log(buffer[i].fitness);
+    if (buffer[i].fitness <= pivot.fitness) {
       left.push(buffer[i]);
     } else {
       right.push(buffer[i]);
     }
   }
 
-  return sortPopulation(left).concat([pivot], sortPopulation(right));
+  console.log('right is ' + right.length);
+  console.log('left is ' + left.length);
+  return sortPopulation(left, 'left').concat([pivot], sortPopulation(right, 'right'));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -178,3 +187,4 @@ Population.prototype.evolve = function() {
 ///////////////////////////////////////////////////////////////////////////////
 exports.Chromosome = Chromosome;
 exports.Population = Population;
+exports.sortPopulation = sortPopulation;
