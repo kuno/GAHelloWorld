@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Guan 'kuno' Qing
+// Copyright (c) 2011 Guan 'kuno' Qing
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,31 +46,29 @@ function updateFitness(gene) {
   return fitness;                                   
 }
 
-function sortPopulation(buffer, msg) {
-  if (buffer.length < 2) {
-    console.log(msg + ' leaf is ' + buffer.length);
-    return buffer;
-  } else {
-   console.log('all is ' + buffer.length);
-  }
-  var pivotIndex = floor(buffer.length / 2);
-  var pivot = buffer.splice(pivotIndex, 1)[0];
-  console.log('pivot is ' + pivot.fitness);
+function sortPopulation(population) {
+  if (population.length <= 1) { return population;}
+
+  var pop = [];
+  // copy population to a new array
+  population.forEach(function(p) {
+      if (p) { pop.push(p);}
+  });
+
+  var pivotIndex = floor(pop.length / 2);
+  var pivot = pop.splice(pivotIndex, 1)[0];
   var left = [];
   var right = [];
 
-  for (var i = 0; i < buffer.length; ++i) {
-    console.log(buffer[i].fitness);
-    if (buffer[i].fitness <= pivot.fitness) {
-      left.push(buffer[i]);
+  for (var i = 0; i < pop.length; ++i) {
+    if (pop[i].fitness <= pivot.fitness) {
+      left.push(pop[i]);
     } else {
-      right.push(buffer[i]);
+      right.push(pop[i]);
     }
   }
 
-  console.log('right is ' + right.length);
-  console.log('left is ' + left.length);
-  return sortPopulation(left, 'left').concat([pivot], sortPopulation(right, 'right'));
+  return sortPopulation(left).concat([pivot], sortPopulation(right));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -185,6 +183,6 @@ Population.prototype.evolve = function() {
 ///////////////////////////////////////////////////////////////////////////////
 // exports
 ///////////////////////////////////////////////////////////////////////////////
-exports.Chromosome = Chromosome;
-exports.Population = Population;
+exports.Chromosome     = Chromosome;
+exports.Population     = Population;
 exports.sortPopulation = sortPopulation;

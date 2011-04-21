@@ -1,4 +1,4 @@
-//  Copyright (c) 2010 Guan 'kuno' Qing
+//  Copyright (c) 2011 Guan 'kuno' Qing
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 // unit testing for genetic algorithms of 'Hello, World!'
 ///////////////////////////////////////////////////////////////////////////////
-var int        = parseInt,
-    round     = Math.round,
-    assert     = require('assert'),
-    Chromosome = require('./gahelloworld.js').Chromosome,
-    Population = require('./gahelloworld.js').Population,
+var int            = parseInt,
+    round          = Math.round,
+    assert         = require('assert'),
+    Chromosome     = require('./gahelloworld.js').Chromosome,
+    Population     = require('./gahelloworld.js').Population,
     sortPopulation = require('./gahelloworld.js').sortPopulation;
 
 
@@ -149,16 +149,17 @@ function test_mutation() {
 }
 
 function test_population() {
-  var pop = new Population(2, 0.8, 0.1, 0.05),
-      arr = pop.population, newArr, i;
+  var pop = new Population(1024, 0.8, 0.1, 0.05),
+      oldArr = pop.population, newArr, i;
 
-  assert.equal(arr.length, 2);
+  assert.equal(oldArr.length, 1024);
 
-  newArr = sortPopulation(arr);
-  assert.equal(arr.length, newArr.length);
+  newArr = sortPopulation(oldArr);
+  assert.strictEqual(oldArr.length, newArr.length);
 
-  for (i = 0; i < arr.length; i++) {
-    assert.deepEqual(arr[i], newArr[i]);
+  for (i = 0; i < oldArr.length; i++) {
+    // what about same fitness but different gene?
+    assert.deepEqual(oldArr[i].fitness, newArr[i].fitness);
   }
 }
 

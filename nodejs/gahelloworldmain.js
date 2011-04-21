@@ -1,4 +1,4 @@
-//  Copyright (c) 2010 Guan 'kuno' Qing
+//  Copyright (c) 2011 Guan 'kuno' Qing
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,17 +19,16 @@
 // THE SOFTWARE.
 
 
- //////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 // main program for genetic algorithms of 'Hello, World!'
 ///////////////////////////////////////////////////////////////////////////////
 var Chromosome = require('./gahelloworld.js').Chromosome,
     Population = require('./gahelloworld.js').Population;
-  
+
 var maxGeneration = 16280;
 var pop = new Population(2048, 0.8, 0.1, 0.3);
 
 for (var i = 0; i < maxGeneration; ++i) {
- // console.log('Generation len #' + i + ':' + pop.population.length);
   console.log('Generation #' + i + ': ' + pop.population[0].gene);
   if (pop.population[0].fitness === 0) {
     break;
@@ -39,4 +38,4 @@ for (var i = 0; i < maxGeneration; ++i) {
     console.log('Maximum generations reached without success.');
   }
 }
-                                           
+
