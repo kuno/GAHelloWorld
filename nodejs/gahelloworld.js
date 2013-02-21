@@ -22,7 +22,7 @@
 // nodejs implementation of genetic algorithms of 'Hello World!'
 ///////////////////////////////////////////////////////////////////////////////
 // target
-var _target_gene = "Hello, world!"; 
+var _target_gene = "Hello, world!";
 
 // Mathematical tools
 var abs = Math.abs, rand = Math.random, round = Math.round, floor = Math.floor;
@@ -43,7 +43,7 @@ function updateFitness(gene) {
     fitness += abs(buf1[i] - buf2[i]);
   }
 
-  return fitness;                                   
+  return fitness;
 }
 
 function sortPopulation(population) {

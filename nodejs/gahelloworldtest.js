@@ -165,8 +165,8 @@ function test_population() {
 
 function test_evolve() {
   var pop = new Population(1024, 0.8, 0.1, 0.05),
-      oldArr = pop.population, newArr, elitismCount,
-      count, i;
+      oldArr = pop.population,
+      newArr, elitismCount, count, i;
 
   pop.evolve();
   newArr = pop.population;
