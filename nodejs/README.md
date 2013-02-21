@@ -1,20 +1,20 @@
 # Genetic Algorithm Hello World! (Nodejs Edition)
 
-This is a simple project intended to showcase genetic algorithms with a well 
-known example for all new developers; namely the classic "Hello, world!" 
+This is a simple project intended to showcase genetic algorithms with a well
+known example for all new developers; namely the classic "Hello, world!"
 example, written in nodejs.
 
 ## Overview
 
-The application simply "evolves" the string "Hello, world!" from a population 
+The application simply "evolves" the string "Hello, world!" from a population
 of random strings.  It is intended to be a gentle introduction into the world
-of genetic algorithms, specifically with nodejs 4.6. 
+of genetic algorithms, specifically with nodejs 4.6.
 
 
 ## Usage
 
 The project is completely self contained. To execute the application, run
-the following command from a shell. 
+the following command from a shell.
 
 ### main program
 
@@ -29,7 +29,7 @@ the following command from a shell.
 
 The MIT License
 
-Copyright &copy; 2011 John Guan 'kuno' Qing
+Copyright &copy; 2011 Guan 'kuno' Qing
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
